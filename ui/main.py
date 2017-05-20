@@ -1,3 +1,9 @@
+import sys
+import os
+parent_path = os.path.dirname(sys.path[0])
+if parent_path not in sys.path:
+    print "import "+parent_path
+    sys.path.append(parent_path)
 import web
 urls=(
       '/','index'
