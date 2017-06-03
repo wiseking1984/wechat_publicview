@@ -7,7 +7,7 @@ if parent_path not in sys.path:
     print "import "+parent_path
     sys.path.append(parent_path)
 import web
-import accessToken.Basic
+import accessToken
 from msghandler import *
 urls=(      
       "/wx","InfoHandler"

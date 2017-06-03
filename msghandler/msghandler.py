@@ -18,7 +18,7 @@ class InfoHandler:
             timestamp = data.timestamp
             nonce = data.nonce
             echostr = data.echostr
-            token = "bio035token" #请按照公众平台官网\基本配置中信息填写
+            token = "bio035token"
 
             list1 = [token, timestamp, nonce]
             list1.sort()
@@ -36,13 +36,13 @@ class InfoHandler:
     def POST(self):
         try:
             webData = web.data()
-            print "Handle Post webdata is ", webData   #后台打日志
+            print "Handle Post webdata is ", webData
             recMsg = receive.parse_xml(webData)
             if isinstance(recMsg, receive.Msg) and recMsg.MsgType == 'text':
                 print "get common text wx msg"
                 toUser = recMsg.FromUserName
                 fromUser = recMsg.ToUserName
-                content = "test" # 待替换成原始内容
+                content = "hello" 
                 replyMsg = reply.TextMsg(toUser, fromUser, content)
                 return replyMsg.send()
             elif isinstance(recMsg, receive.Msg) and recMsg.MsgType == 'image':
@@ -52,7 +52,7 @@ class InfoHandler:
                 commonmsg = reply.Msg
                 return commonmsg.send()
             else:
-                print "未知消息类型暂且不处理:"+recMsg.MsgType
+                print "unknow msg type:"+recMsg.MsgType
                 return "success"
         except Exception, Argment:
             print "get exception in post"

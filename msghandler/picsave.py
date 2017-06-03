@@ -4,7 +4,7 @@ import json
 import os,errno
 
 class picsave(object):
-    SAVEDIR = "/home/image"#图片存储根目录
+    SAVEDIR = "/home/image"#pic dir
     def __init__(self, url,openid,mediaid):
         self.url = url
         self.openid = openid
@@ -35,7 +35,7 @@ class picsave(object):
                 print "temple pic but get json or text msg"
                 print jsonDict
             else:
-                picbuffer = urlResp.read()   #素材的二进制
+                picbuffer = urlResp.read()   
                 mediaFile = file(self.savepath, "wb")
                 mediaFile.write(picbuffer)
                 print "successful write pic "+self.savepath
