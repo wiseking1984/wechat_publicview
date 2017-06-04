@@ -14,7 +14,7 @@ class picsave():
         dirpath = picsave.SAVEDIR +"/"+openid+"/"+datestr
         
         self.makesuredirexist(dirpath)
-        self.savepath=dirpath+"/"+self.mediaid
+        self.savepath=dirpath+"/"+self.mediaid+".jpg"
     def makesuredirexist(self,dirpath):
         if os.path.isdir(dirpath):
             pass
@@ -31,7 +31,7 @@ class picsave():
         try:            
             #postUrl = "https://api.weixin.qq.com/cgi-bin/media/get?access_token=%s&media_id=%s" % (accessToken, self.mediaid)
             postUrl=self.url
-            print "post image url: ", postUrl
+            print "get image from url: ", postUrl
             urlResp = urllib2.urlopen(postUrl,timeout=10)
     
             headers = urlResp.info().__dict__['headers']
