@@ -10,8 +10,8 @@ import web
 import accessToken
 from msghandler import *
 urls=(      
-      #"/wx","InfoHandler"
-      '/','index'
+      '/wx','msghandler.InfoHandler',
+      #'/','index'
 )
 msghandler.basic = accessToken.Basic()
 accessTask = threading.Thread(target=msghandler.basic,args=())
@@ -19,10 +19,11 @@ accessTask = threading.Thread(target=msghandler.basic,args=())
 
 if __name__ == "__main__": 
     print "start main"    
-    app = web.application(urls,globals())
-    app.run()
+    
     accessTask.setDaemon(True)
     accessTask.start()
+    app = web.application(urls,globals())
+    app.run()
     print "app run"
 
 #for test only

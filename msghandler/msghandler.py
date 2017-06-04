@@ -11,6 +11,7 @@ basic = accessToken.Basic()
 class InfoHandler:
     def GET(self):
         try:
+            print "get request in Infohandler"
             data = web.input()
             if len(data) == 0:
                 return "hello, this is handle view"

@@ -24,7 +24,8 @@ class Basic:
         self.__leftTime = urlResp['expires_in']
         print("get access token "+self.__accessToken)
         print("get access leftTime "+str(self.__leftTime))
-
+    def __call__(self):
+        self.run()
     def get_access_token(self):
         if self.__leftTime < 10:
             self.__real_get_access_token()
