@@ -10,7 +10,7 @@ class picsave():
         self.url = url
         self.openid = openid
         self.mediaid = mediaid
-        print url,openid,mediaid
+        #print url,openid,mediaid
         datestr=time.strftime('%Y-%m-%d',time.localtime(time.time()))
         dirpath = picsave.SAVEDIR +"/"+openid+"/"+datestr
         
@@ -34,6 +34,7 @@ class picsave():
         count = 0
         for i in os.walk(dirpath):    #遍历统计
             count += 1
+        print dirpath," 下的图片数量 ",count
         if count > 5:
             return False
         else:
