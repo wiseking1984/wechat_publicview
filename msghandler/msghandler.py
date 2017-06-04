@@ -56,5 +56,5 @@ class InfoHandler:
                 print "unknow msg type:"+recMsg.MsgType
                 return "success"
         except Exception, Argment:
-            print "get exception in post"
+            print "get exception in post",Argment
             return Argment
