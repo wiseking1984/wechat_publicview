@@ -10,7 +10,8 @@ import web
 import accessToken
 from msghandler import *
 urls=(      
-      "/wx","InfoHandler"
+      #"/wx","InfoHandler"
+      '/','index'
 )
 msghandler.basic = accessToken.Basic()
 accessTask = threading.Thread(target=msghandler.basic.run(),args=())
