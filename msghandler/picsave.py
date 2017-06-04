@@ -3,12 +3,13 @@ import urllib2
 import json
 import os,errno
 
-class picsave(object):
+class picsave():
     SAVEDIR = "/home/image"#pic dir
     def __init__(self, url,openid,mediaid):
         self.url = url
         self.openid = openid
         self.mediaid = mediaid
+        print url,openid,mediaid
         datestr=time.strftime('%Y-%m-%d',time.localtime(time.time()))
         dirpath = picsave.SAVEDIR +"/"+openid+"/"+datestr
         print "ready mk image dir: ", dirpath

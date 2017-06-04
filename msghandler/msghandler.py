@@ -48,7 +48,7 @@ class InfoHandler:
                 return replyMsg.send()
             elif isinstance(recMsg, receive.Msg) and recMsg.MsgType == 'image':
                 print "get common image wx msg"
-                ps=picsave(recMsg.PicUrl,recMsg.FromUserName,recMsg.MediaId)
+                ps=picsave.picsave(recMsg.PicUrl,recMsg.FromUserName,recMsg.MediaId)
                 ps.save(basic.get_access_token())
                 commonmsg = reply.Msg
                 return commonmsg.send()
