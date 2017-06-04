@@ -33,7 +33,7 @@ class picsave():
     def checkdirfilecnt(self,dirpath):
         count = len(os.listdir(dirpath))        
         print dirpath," 下的图片数量 ",count
-        if count > 5:
+        if count > 300:
             return False
         else:
             return True
