@@ -1,3 +1,4 @@
+#coding=utf-8
 import time
 import urllib2
 import json
@@ -17,7 +18,10 @@ class picsave():
         self.savepath=dirpath+"/"+self.mediaid+".jpg"
     def makesuredirexist(self,dirpath):
         if os.path.isdir(dirpath):
-            pass
+            if self.checkdirfilecnt(dirpath) :
+                return
+            else:
+                raise IOError
         else:
             try:
                 print "ready mk image dir: ", dirpath
@@ -26,7 +30,15 @@ class picsave():
                 if exc.errno == errno.EEXIST and os.path.isdir(dirpath):
                     print "dir exist exception"
                 else: print "get exception in mkdir :"+exc
-        
+    def checkdirfilecnt(self,dirpath):
+        count = 0
+        for i in os.walk(dirpath):    #遍历统计
+            count += 1
+        if count > 5:
+            return False
+        else:
+            return True
+            
     def save(self,accessToken):
         try:            
             #postUrl = "https://api.weixin.qq.com/cgi-bin/media/get?access_token=%s&media_id=%s" % (accessToken, self.mediaid)

@@ -1,3 +1,4 @@
+#coding=utf-8
 import hashlib
 import web
 
@@ -39,19 +40,25 @@ class InfoHandler:
             webData = web.data()
             print "Handle Post webdata is ", webData
             recMsg = receive.parse_xml(webData)
-            if isinstance(recMsg, receive.Msg) and recMsg.MsgType == 'text':
-                print "get common text wx msg"
-                toUser = recMsg.FromUserName
-                fromUser = recMsg.ToUserName
-                content = "hello" 
+            toUser = recMsg.FromUserName
+            fromUser = recMsg.ToUserName
+            if isinstance(recMsg, receive.Msg) and recMsg.MsgType != 'image':
+                print "get common text wx msg msgtype:",recMsg.MsgType                
+                content = "请把图片发给我，只接受图片哦" 
                 replyMsg = reply.TextMsg(toUser, fromUser, content)
                 return replyMsg.send()
             elif isinstance(recMsg, receive.Msg) and recMsg.MsgType == 'image':
-                print "get common image wx msg"
-                ps=picsave.picsave(recMsg.PicUrl,recMsg.FromUserName,recMsg.MediaId)
-                ps.save(basic.get_access_token())
-                commonmsg = reply.Msg()
-                return commonmsg.send()
+                try:
+                    print "get common image wx msg"
+                    ps=picsave.picsave(recMsg.PicUrl,recMsg.FromUserName,recMsg.MediaId)
+                    ps.save(basic.get_access_token())
+                    content="图片已成功保存到服务器"
+                    commonmsg = reply.TextMsg(toUser, fromUser, content)
+                    return commonmsg.send()
+                except IOError:
+                    content="骚年，你传的图片太多了"
+                    commonmsg = reply.TextMsg(toUser, fromUser, content)
+                    return commonmsg.send()
             else:
                 print "unknow msg type:"+recMsg.MsgType
                 return "success"
