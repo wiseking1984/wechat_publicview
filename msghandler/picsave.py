@@ -12,7 +12,7 @@ class picsave():
         print url,openid,mediaid
         datestr=time.strftime('%Y-%m-%d',time.localtime(time.time()))
         dirpath = picsave.SAVEDIR +"/"+openid+"/"+datestr
-        print "ready mk image dir: ", dirpath
+        
         self.makesuredirexist(dirpath)
         self.savepath=dirpath+"/"+self.mediaid
     def makesuredirexist(self,dirpath):
@@ -20,6 +20,7 @@ class picsave():
             pass
         else:
             try:
+                print "ready mk image dir: ", dirpath
                 os.makedirs(dirpath)
             except OSError as exc: # Python >2.5 (except OSError, exc: for Python <2.5)
                 if exc.errno == errno.EEXIST and os.path.isdir(dirpath):
@@ -28,7 +29,8 @@ class picsave():
         
     def save(self,accessToken):
         try:            
-            postUrl = "https://api.weixin.qq.com/cgi-bin/media/get?access_token=%s&media_id=%s" % (accessToken, self.mediaid)
+            #postUrl = "https://api.weixin.qq.com/cgi-bin/media/get?access_token=%s&media_id=%s" % (accessToken, self.mediaid)
+            postUrl=self.url
             print "post image url: ", postUrl
             urlResp = urllib2.urlopen(postUrl,timeout=10)
     

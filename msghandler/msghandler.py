@@ -50,7 +50,7 @@ class InfoHandler:
                 print "get common image wx msg"
                 ps=picsave.picsave(recMsg.PicUrl,recMsg.FromUserName,recMsg.MediaId)
                 ps.save(basic.get_access_token())
-                commonmsg = reply.Msg
+                commonmsg = reply.Msg()
                 return commonmsg.send()
             else:
                 print "unknow msg type:"+recMsg.MsgType
