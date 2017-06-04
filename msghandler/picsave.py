@@ -31,9 +31,7 @@ class picsave():
                     print "dir exist exception"
                 else: print "get exception in mkdir :"+exc
     def checkdirfilecnt(self,dirpath):
-        count = 0
-        for i in os.walk(dirpath):    #遍历统计
-            count += 1
+        count = len(os.listdir(dirpath))        
         print dirpath," 下的图片数量 ",count
         if count > 5:
             return False
